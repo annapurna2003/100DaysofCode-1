@@ -1,0 +1,21 @@
+import bisect
+
+class Solution:
+    def ValidPair(self, a, n): 
+    	# Your code goes here
+    	a.sort()
+        ans = 0
+
+        for i in range(n - 1):
+            if a[i] > 0:
+                k = n - i - 1
+                ans += k * (k + 1) // 2
+                return ans
+            
+            ind = bisect.bisect_left(a, 1 - a[i])
+            if ind < n:
+                ans += n - ind
+
+        return ans
+
+#driver code
